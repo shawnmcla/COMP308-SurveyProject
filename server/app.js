@@ -84,4 +84,5 @@ app.use(function (error, req, res, next) {
   });
 });
 
+console.log("\n\n\n*** APP STARTED ***\n\n\n");
 module.exports = app;

@@ -13,7 +13,7 @@ let mongoose = require('mongoose');
 let URI = "mongodb://localhost/surveyapp";
 
 //Use environment var URI for production
-mongoose.connect(URI || process.env.URI);
+mongoose.connect(process.env.URI || URI);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
