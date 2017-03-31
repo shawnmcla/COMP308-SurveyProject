@@ -63,7 +63,7 @@ module.exports.ProcessRegister = (req, res) => {
         req.body.password,
         (err) => {
             if (err) {
-                console.log('Error inserting new user');
+                console.log('Error inserting new user: ', err);
                 if (err.name == "UserExistsError") {
                     req.flash('registerMessage', 'Registration Error: User Already Exists');
                 }

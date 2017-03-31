@@ -25,12 +25,6 @@ let usersSchema = Schema({
         trim: true,
         required: 'Email is required.'
     },
-    displayName: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Display name is required.'
-    },
     created: {
         type: Date,
         default: Date.now,
