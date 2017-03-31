@@ -1,3 +1,13 @@
+/**
+ * File name: app.js
+ * Authors:
+ * Shawn McLaughlin <shawnmcdev@gmail.com>
+ * Joshua Korovesi <joshua.j.korovesi@gmail.com>
+ * Site: https://joshawn-opine.herokuapp.com/
+ * Description: Web app entry point. Initializes modules.
+ */
+
+//express middleware
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,10 +15,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+//auth modules
+let session = require('express-session');
+let passport = require('passport');
+let passportlocal = require('passport-local');
+let LocalStrategy = passportlocal.Strategy;
+let flash = require('connect-flash'); //display errors/login messages
 
-var app = express();
+let mongoose = require('mongoose');
+let dbConfig = require('./config/db');
+
+let indexRoutes = require('./routes/index');
+let authRoutes = require('./routes/auth');
+let pollRoutes = require('./routes/polls');
+
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,25 +43,45 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'client')));
 
-app.use('/', index);
-app.use('/users', users);
+// setup session
+app.use(session({
+  secret: "SomeSecret",
+  saveUninitialized: true,
+  resave: true
+}));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+// initialize passport and flash
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+// setup routes
+app.use('/', indexRoutes);
+app.use('/auth', authRoutes);
+app.use('/polls', pollRoutes);
+
+// Passport User Configuration
+let UserModel = require('./models/users');
+let User = UserModel.User; // alias for the User Model - User object
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Handle 404 Errors
+app.use(function (req, res) {
+  res.status(400);
+  res.render('errors/404', {
+    title: '404: File Not Found'
+  });
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+// Handle 500 Errors
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.render('errors/500', {
+    title: '500: Internal Server Error',
+    error: error
+  });
 });
 
 module.exports = app;
