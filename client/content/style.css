@@ -1,3 +1,4 @@
+/*
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -7,3 +8,83 @@ body {
 a {
   color: #00B7FF;
 }
+*/
+
+body{
+  background-image: url('./images/billie-holiday.png');
+  background-color: #5591db;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/***
+* Homepage 
+***/
+
+.banner{
+  margin-top:10%;
+}
+
+.banner-info{
+  font-size:2em;
+}
+
+.home-links a{
+  color: #008;
+}
+
+.browse-surveys{
+  margin-top:50px;
+}
+
+.smol{
+  font-size:0.6em;
+  color: #333;
+}
+
+
+
+
+
+/* Sticky footer styles
+Taken from: http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color:rgba(255,255,255,0.5);
+}
+
+
+
+/* unselectable */
+.unselectable{
+   pointer-events: none;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+/** center-block fix */
+.center-block {
+  display: table;
+  margin: 0 auto;
+}
+
