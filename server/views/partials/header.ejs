@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>opine<%= title %></title>
+    <link rel="stylesheet" href="/scripts/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/scripts/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/scripts/lib/font-awesome/css/font-awesome.min.css">
+    <link rel='stylesheet' href="/content/style.css">
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-heading">
+            <h1>opine</h1>
+        </div>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li 
+                        <% if(title == "Home") { %> class="active" <% } %>
+                    ><a href="/"><i class="fa fa-home fa-lg"></i> Home</a></li>
+                    <li 
+                        <% if(title == "Create") { %> class="active" <% } %>
+                    ><a href="/create"><i class="fa fa-plus-circle fa-lg"></i> Create</a></li>
+                     <li 
+                        <% if(title == "Browse") { %> class="active" <% } %>
+                    ><a href="/browse"><i class="fa fa-eye fa-lg"></i> Browse</a></li>
+                    <li 
+                        <% if(title == "My Surveys") { %> class="active" <% } %>
+                    ><a href="/mySurveys"><i class="fa fa-folder-open fa-lg"></i> My Surveys</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        
