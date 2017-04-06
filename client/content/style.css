@@ -1,6 +1,5 @@
 body{
   background-image: url('./images/billie-holiday.png');
-  /*background-color: #5591db;*/
   background-color: #73ceff;
   color: #333;
   font-family: 'Open Sans', sans-serif;
@@ -15,6 +14,7 @@ h1{
 }
 .container{
   margin-top:30px;
+  overflow-x: hidden;
 }
 .banner{
   margin-top:10%;
@@ -25,14 +25,15 @@ h1{
 }
 
 a{
-  color: #008;
+  /*color: #008;*/
+  color: #228;
   font-size:110%;
 }
-a:not(.nopad){
+a:not(.nopad):not(input):not(button){
   padding:0 25px;
 }
 
-a:hover:not(.nopad){
+a:hover:not(.nopad):not(input):not(button){
   text-decoration: none;
   color:#000;
   background-color:rgba(255, 255, 255, 0.25);
@@ -45,6 +46,10 @@ a:hover:not(.nopad){
 .smol{
   font-size:0.6em;
   color: #333;
+}
+
+.site-wrapper{
+  margin: 0 10px;
 }
 
 /***
@@ -81,7 +86,11 @@ a:hover:not(.nopad){
 /**
 * Form Items
 ***/
-.btn
+.btn {
+  border-radius: 0px;
+
+}
+
 
 
 /* Sticky footer styles
@@ -100,7 +109,8 @@ html, body {
   width: 100%;
   font-size:.75em;
   /* Set the fixed height of the footer here */
-  height: 50px;
+  height: 25px;
+  overflow-x: hidden;
 }
 
 
