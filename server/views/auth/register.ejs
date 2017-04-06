@@ -8,7 +8,8 @@
       <% } %>
 		<div class="row">
             <div class="col-md-offset-4 col-md-4">
-                <h1>User Registration</h1>
+                <h1 class="text-center">Registration</h1>
+                <p class="text-center"> Fill out this short registration form and get polling in no time!</p>
                 <form method="post">
                     <fieldset class="form-group">
                         <label for="email">Email: *</label>
@@ -24,15 +25,15 @@
                     </fieldset>
                     <fieldset class="form-group text-right">
                         <input type="submit" class="btn btn-success" value="Submit"/>
-                        <a href="/">
+                        <a href="/" class="nopad">
                             <input type="button" class="btn btn-warning" value="Cancel"/>
                         </a>
                     </fieldset>
+                    <p class="notice text-right">By submitting this form, you agree to our <a href="/content/tos.html" target="blank" class="nopad"><strong>Terms of Service</strong></a> and
+                    our <a class="nopad bold" href="/content/privacy.html"><strong>Privacy Policy</strong></a>.
                 </form>
             </div>
         </div>
 	</main>
-
-
 
 <% include ../partials/footer.ejs %>

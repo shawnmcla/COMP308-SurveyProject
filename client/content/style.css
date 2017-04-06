@@ -29,11 +29,11 @@ a{
   color: #228;
   font-size:110%;
 }
-a:not(.nopad):not(input):not(button){
+a:not(.nopad){
   padding:0 25px;
 }
 
-a:hover:not(.nopad):not(input):not(button){
+a:hover:not(.nopad){
   text-decoration: none;
   color:#000;
   background-color:rgba(255, 255, 255, 0.25);
@@ -52,6 +52,9 @@ a:hover:not(.nopad):not(input):not(button){
   margin: 0 10px;
 }
 
+.notice{
+  font-size:75%;
+}
 /***
 * Browse Surveys 
 ***/
@@ -88,10 +91,58 @@ a:hover:not(.nopad):not(input):not(button){
 ***/
 .btn {
   border-radius: 0px;
+  background-color:#FFF;
+  color: black;
+  background-image: url('./images/absurdity.png');
+  border: 1px solid #666;
+}
+.btn:hover{
+  border: 1px solid black;
+  color: black;
+}
+.btn-success{
+  background-color:#DFD;
+}
+.btn-success:hover{
+  background-color:#BFB;
 
 }
+.btn-warning{
+  background-color:#FFD;
+}
+.btn-warning:hover{
+  background-color:#FFB;
+}
 
+input[type='text'],
+input[type='password'],
+input[type='email']{
+  outline: none;
+  border: 1px solid #666;
+  border-top: none;
+  border-right: none;
+  background-color: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: black;
+}
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus{
+  outline: none;
+  box-shadow: none;
+  box-shadow: 1px -1px black inset;
+  background-color:rgba(255,255,255,0.1);
+}
 
+::placeholder{
+  color: white;
+  opacity: .75;
+}
+::-moz-placeholder{ /* omg firefox plssss */
+  color:white !important;
+  opacity: .75 !important;
+}
 
 /* Sticky footer styles
 Taken from: http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
