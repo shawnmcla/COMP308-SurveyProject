@@ -1,6 +1,7 @@
 body{
   background-image: url('./images/billie-holiday.png');
-  background-color: #5591db;
+  /*background-color: #5591db;*/
+  background-color: #73ceff;
   color: #333;
   font-family: 'Open Sans', sans-serif;
 }
@@ -9,6 +10,9 @@ body{
 * Homepage 
 ***/
 
+.container{
+  margin-top:50px;
+}
 .banner{
   margin-top:10%;
 }
@@ -17,8 +21,18 @@ body{
   font-size:2em;
 }
 
-.home-links a{
+a{
   color: #008;
+  font-size:110%;
+}
+a:not(.nopad){
+  padding:0 25px;
+}
+
+a:hover:not(.nopad){
+  text-decoration: none;
+  color:#000;
+  background-color:rgba(255, 255, 255, 0.25);
 }
 
 .browse-surveys{

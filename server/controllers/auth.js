@@ -22,7 +22,7 @@ module.exports.DisplayLogin = (req, res) => {
         });
         return;
     } else {
-        return res.redirect('/dashbpard'); // redirect to dashnpard
+        return res.redirect('/dashboard'); // redirect to dashboard
     }
 }
 
@@ -30,7 +30,7 @@ module.exports.DisplayLogin = (req, res) => {
 module.exports.ProcessLogin = () => {
     return passport.authenticate('local', {
         successRedirect: '/polls/dashboard',
-        failureRedirect: '/users/login',
+        failureRedirect: '/auth/login',
         failureFlash: true
     });
 }

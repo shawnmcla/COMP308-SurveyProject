@@ -14,33 +14,55 @@ let router = express.Router();
 let gamesController = require('../controllers/polls');
 // require the auth controller
 let authController = require('../controllers/auth');
-
-// require authentication for all pages
-router.use(authController.RequireAuth);
+let reqAuth = authController.RequireAuth;
 
 /* GET dashboard page. */
-router.get('/dashboard', function(req, res, next) {
-  res.render('polls/dashboard', { title: 'Dashboard' });
+router.get('/dashboard', reqAuth, function (req, res, next) {
+  res.render('polls/dashboard', {
+    title: 'Dashboard',
+    userName: req.user.username,
+    data: null,
+  });
 });
 
-/* GET browse page. */
-router.get('/browse', function(req, res, next) {
-  res.render('polls/browse', { title: 'Browse Surveys' });
+/* 
+GET browse page.
+Does not require auth, 
+anons can answer surveys
+*/
+router.get('/browse', function (req, res, next) {
+  res.render('polls/browse', {
+    title: 'Browse Surveys',
+    userName: req.user ? req.user.username : "Guest",
+    data: null,
+  });
 });
 
 /* GET true false page. */
-router.get('/tfSurvey', function(req, res, next) {
-  res.render('polls/tfSurvey', { title: 'TrueFalse' });
+router.get('/new/truefalse', reqAuth, function (req, res, next) {
+  res.render('polls/tfSurvey', {
+    title: 'TrueFalse',
+    userName: req.user.username,
+    data: null,
+  });
 });
 
 /* GET multiple choice page. */
-router.get('/mcSurvey', function(req, res, next) {
-  res.render('polls/mcSurvey', { title: 'MultiChoice' });
+router.get('/new/multiplechoice', reqAuth, function (req, res, next) {
+  res.render('polls/mcSurvey', {
+    title: 'MultiChoice',
+    userName: req.user.username,
+    data: null,
+  });
 });
 
 /* GET short answer page. */
-router.get('/saSurvey', function(req, res, next) {
-  res.render('polls/saSurvey', { title: 'Short Answer' });
+router.get('/new/shortanswers', reqAuth, function (req, res, next) {
+  res.render('polls/saSurvey', {
+    title: 'Short Answer',
+    userName: req.user.username,
+    data: null,
+  });
 });
 
 module.exports = router;

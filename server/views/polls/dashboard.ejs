@@ -1,1 +1,39 @@
-D A S H B O A R D H Y P E
+<% include ../partials/header.ejs %>
+    <div class="container">
+        <div class="row text-center">
+            <div class="row">
+                <h1>
+                    Welcome,
+                    <%= userName %>!
+                </h1>
+            </div>
+            <div class="row"><a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>
+ Log Out</a></div>
+            <div class="row"><a href="/auth/settings"><i class="fa fa-cog" aria-hidden="true"></i> 
+Account Settings</a></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="row">
+                        <h3><i class="fa fa-file-text-o" aria-hidden="true"></i> New Survey </h3>
+                    </div>
+                    <div class="row"><a href="/polls/new/truefalse">True / False</a></div>
+                    <div class="row"><a href="/polls/new/multiplechoice">Multiple Choice</a></div>
+                    <div class="row"><a href="/polls/new/shortanswers">Short Answers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="row">
+                        <h3><i class="fa fa-eye" aria-hidden="true"></i> View Surveys </3>
+                    </div>
+                    <div class="row"><a href="/polls/mine">View My Polls & Surveys </a></div>
+                    <div class="row"><a href="/polls/browse">Browse Available Surveys</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../partials/footer.ejs %>
