@@ -1,0 +1,47 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">Browse Surveys</h2>
+    </div>
+
+    <div class="table-responsive">          
+  <table class="table table-bordered table-hover table-condensed">
+    <thead class="table-head">
+      <tr>
+        <th>Created By</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-row">
+      <tr>
+        <td>Username</td>
+        <td>Title</td>
+        <td>True & False</td>
+        <td><a href="/polls/tfSurvey">Take Survey</a></td>
+      </tr>
+    </tbody>
+    <tbody class="table-row">
+      <tr>
+        <td>Username</td>
+        <td>Title</td>
+        <td>Multiple Choice</td>
+        <td><a href="/polls/mcSurvey">Take Survey</a></td>
+      </tr>
+    </tbody>
+    <tbody class="table-row">
+      <tr>
+        <td>Username</td>
+        <td>Title</td>
+        <td>Short Answer</td>
+        <td><a href="/polls/saSurvey">Take Survey</a></td>
+      </tr>
+    </tbody>
+
+  </table>
+  </div>
+
+</div>
+<% include ../partials/footer.ejs %>

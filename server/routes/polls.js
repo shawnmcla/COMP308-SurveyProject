@@ -23,4 +23,24 @@ router.get('/dashboard', function(req, res, next) {
   res.render('polls/dashboard', { title: 'Dashboard' });
 });
 
+/* GET browse page. */
+router.get('/browse', function(req, res, next) {
+  res.render('polls/browse', { title: 'Browse Surveys' });
+});
+
+/* GET true false page. */
+router.get('/tfSurvey', function(req, res, next) {
+  res.render('polls/tfSurvey', { title: 'TrueFalse' });
+});
+
+/* GET multiple choice page. */
+router.get('/mcSurvey', function(req, res, next) {
+  res.render('polls/mcSurvey', { title: 'MultiChoice' });
+});
+
+/* GET short answer page. */
+router.get('/saSurvey', function(req, res, next) {
+  res.render('polls/saSurvey', { title: 'Short Answer' });
+});
+
 module.exports = router;

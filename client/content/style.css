@@ -1,15 +1,3 @@
-/*
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:#150000;
-}
-
-a {
-  color: #00B7FF;
-}
-*/
-
 body{
   background-image: url('./images/billie-holiday.png');
   background-color: #5591db;
@@ -42,6 +30,17 @@ body{
   color: #333;
 }
 
+/***
+* Browse Surveys 
+***/
+
+.table-head{
+    background-color: #ffffff;
+}
+
+.table-row{
+  background-color: #ccffff;
+}
 
 
 
