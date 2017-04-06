@@ -10,8 +10,11 @@ body{
 * Homepage/General
 ***/
 
+h1{
+  font-weight: bold;
+}
 .container{
-  margin-top:50px;
+  margin-top:30px;
 }
 .banner{
   margin-top:10%;
@@ -63,16 +66,23 @@ a:hover:not(.nopad){
   margin-top: 50px;
   padding: 0px 15px;
   border: 2px solid rgba(0,0,0,0.2);
-  border-top:none;
   border-radius: 0 0 2% 2%;
   min-height: 200px;
+  box-shadow: 2px 2px 5px #888888;
 }
 .dashboard-component h3{
+  font-weight: bold;
   padding: 5px 0 5px 0;
   margin: 0 0 30px 0;
   background-color: #EEE;
   width: 100%;
 }
+
+/**
+* Form Items
+***/
+.btn
+
 
 /* Sticky footer styles
 Taken from: http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
