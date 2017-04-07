@@ -1,0 +1,45 @@
+<%#
+ * File name: browseMine.ejs
+ * Authors:
+ * Shawn McLaughlin <shawnmcdev@gmail.com>
+ * Joshua Korovesi <joshua.j.korovesi@gmail.com>
+ * Site: https://joshawn-opine.herokuapp.com/
+ * Description: Browse own surveys page template.
+%>
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">My Surveys</h2>
+    </div>
+
+    <div class="table-responsive">          
+  <table class="table table-bordered table-hover table-condensed">
+    <thead class="table-head">
+      <tr>
+        <th><span class="glyphicon glyphicon-console" aria-hidden="true"></span> Title</th>
+        <th><span class=" glyphicon glyphicon-th-list" aria-hidden="true"></span> Type</th>
+        <th><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Expires</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% for(let count = 0; count < data.surveys.length; count++) { %>
+    <tbody class="table-row">
+      <tr>
+        <td><%= data.surveys[count].title %></td>
+        <td>
+        <% if(data.surveys[count].type == "0") { %> True / False <% } %>
+        <% if(data.surveys[count].type == "2") { %> Short Answers <% } %>
+        </td>
+        <td><%= data.surveys[count].ends.toLocaleString() %></td>
+        <td><a href="/polls/<%= data.surveys[count]._id %>"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Take Survey</a></td>
+        <td><a href="/polls/<%= data.surveys[count]._id%>/details"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Responses </a></td>
+      </tr>
+    </tbody>
+    <% } %>
+  </table>
+  </div>
+
+</div>
+<% include ../partials/footer.ejs %>

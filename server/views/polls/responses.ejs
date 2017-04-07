@@ -1,0 +1,41 @@
+<%#
+ * File name: responses.ejs
+ * Authors:
+ * Shawn McLaughlin <shawnmcdev@gmail.com>
+ * Joshua Korovesi <joshua.j.korovesi@gmail.com>
+ * Site: https://joshawn-opine.herokuapp.com/
+ * Description: Browse survey responses page template.
+%>
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <h2 class="text-center"><%= data.survey.title %></h2>
+        <h3 class="text-center"><%= data.responses.length %> Responses </h3>
+        <h3 class="text-center">Survey ends: <%= data.survey.ends.toLocaleString() %></h3>
+    </div>
+
+<% for(let count = 0; count < data.responses.length; count++) { %>
+<h4> Response #<%= count+1 %> submitted @ <%= data.responses[count].date.toLocaleString() %> </h4>
+    <div class="table-responsive">          
+  <table class="table table-bordered table-hover table-condensed">
+    <thead class="table-head">
+      <tr>
+        <th>Question <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></th>
+        <th>Answer <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></th>
+      </tr>
+    </thead>
+    <% for(let qCount = 0; qCount<5; qCount++){ %>
+    <tbody class="table-row">
+      <tr>
+        <td><%= data.survey.questions[qCount].question %></td>
+        <td><%= data.responses[count].answers[qCount] %></td>
+      </tr>
+    </tbody>
+    <% } %>
+  </table>
+  </div>
+  <% } %>
+
+</div>
+<% include ../partials/footer.ejs %>

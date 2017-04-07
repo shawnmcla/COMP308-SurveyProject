@@ -173,8 +173,24 @@ exports.postNewTF = (req, res) => {
 }
 
 exports.getOwnSurveys = (req, res) => {
-    res.end();
-    return; //todo
+    Survey.find()
+        .where('author')
+        .equals(req.user._id)
+        .sort({ title: 1 })
+        .exec((err, result) => {
+            if (err) {
+                console.log(err);
+                res.redirect('/polls/dashboard');
+                return;
+            } else {
+                console.log(result);
+                res.render('polls/browseMine', {
+                    title: 'Browse Surveys',
+                    userName: req.user ? req.user.username : "Guest",
+                    data: { surveys: result },
+                });
+            }
+        });
 }
 
 exports.getNewMC = (req, res) => {
@@ -186,6 +202,44 @@ exports.getNewMC = (req, res) => {
             date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
         },
     });
+}
+
+exports.getSurveyResponses = (req, res) => {
+    if (!req.params.id || !mongoose.Types.ObjectId.isValid(req.params.id)) {
+        console.log("Invalid survey ID");
+        res.redirect('/polls/dashboard');
+        return;
+    } else {
+        Survey.findById(req.params.id, (err, survey) => {
+            if (err || !res) {
+                console.log(err || "Not found");
+                res.redirect('/polls/dashboard');
+                return; //error msg?
+            } else {
+                if (String(survey.author) == String(req.user._id)) {
+                    SurveyResponse.find({ "survey": survey._id }, (err, responses) => {
+                        if (err) {
+                            console.log(err);
+                            res.redirect('/polls/dashboard');
+                            return;
+                        } else {
+                            res.render('polls/responses', {
+                                title: 'Survey Responses',
+                                userName: req.user ? req.user.username : "Guest",
+                                data: {
+                                    survey: survey,
+                                    responses: responses
+                                },
+                            });
+                        }
+                    });
+                } else {
+                    res.status(403).end("Not authorized to access this survey.");
+                    return;
+                }
+            }
+        });
+    }
 }
 
 exports.getNewSA = (req, res) => {

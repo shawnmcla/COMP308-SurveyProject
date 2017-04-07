@@ -16,6 +16,10 @@ let responsesSchema = Schema({
         required: 'Need target survey',
         index: true
     },
+    date: {
+        type: Date,
+        default: Date.now
+    },
     answers: [{}]
 });
 
