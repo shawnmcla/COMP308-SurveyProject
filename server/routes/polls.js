@@ -40,28 +40,37 @@ router.get('/browse', function (req, res, next) {
 
 /* GET true false page. */
 router.get('/new/truefalse', reqAuth, function (req, res, next) {
-  res.render('polls/tfSurvey', {
-    title: 'TrueFalse',
+  let date = new Date();
+  res.render('polls/newTrueFalse', {
+    title: 'New True False Survey',
     userName: req.user.username,
-    data: null,
+    data: {
+      date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
+    },
   });
 });
 
 /* GET multiple choice page. */
 router.get('/new/multiplechoice', reqAuth, function (req, res, next) {
+  let date = new Date();
   res.render('polls/mcSurvey', {
     title: 'MultiChoice',
     userName: req.user.username,
-    data: null,
+    data: {
+      date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
+    },
   });
 });
 
 /* GET short answer page. */
 router.get('/new/shortanswers', reqAuth, function (req, res, next) {
+  let date = new Date();
   res.render('polls/saSurvey', {
     title: 'Short Answer',
     userName: req.user.username,
-    data: null,
+    data: {
+      date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
+    },
   });
 });
 

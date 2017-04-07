@@ -47,6 +47,10 @@ let surveysSchema = Schema({
         type: Date,
         default: Date.now
     },
+    starts: {
+        type: Date,
+        default: Date.now
+    },
     ends: {
         type: Date
     },

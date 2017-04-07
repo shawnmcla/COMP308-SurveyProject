@@ -22,7 +22,7 @@ module.exports.DisplayLogin = (req, res) => {
         });
         return;
     } else {
-        return res.redirect('/dashboard'); // redirect to dashboard
+        return res.redirect('/polls/dashboard'); // redirect to dashboard
     }
 }
 
