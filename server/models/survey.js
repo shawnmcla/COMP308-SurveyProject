@@ -65,3 +65,4 @@ let surveysSchema = Schema({
     });
 
 exports.Survey = mongoose.model('survey', surveysSchema);
+exports.SurveyTypes = SURVEY_TYPES;
