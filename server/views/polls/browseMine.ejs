@@ -8,7 +8,7 @@
 %>
 <% include ../partials/header.ejs %>
 
-<div class="container">
+<div class="container main-content">
     <div class="row">
         <h2 class="text-center">My Surveys</h2>
     </div>
@@ -33,7 +33,7 @@
         <% if(data.surveys[count].type == "2") { %> Short Answers <% } %>
         </td>
         <td><%= data.surveys[count].ends.toLocaleString() %></td>
-        <td><a href="/polls/<%= data.surveys[count]._id %>"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Take Survey</a></td>
+        <td><a href="/polls/<%= data.surveys[count]._id %>"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> View Survey</a></td>
         <td><a href="/polls/<%= data.surveys[count]._id%>/details"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Responses </a></td>
       </tr>
     </tbody>
