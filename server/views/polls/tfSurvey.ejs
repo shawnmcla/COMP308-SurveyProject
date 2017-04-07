@@ -10,84 +10,84 @@
 
 <div class="container">
     <div class="row text-center">
-        <h2>True & False Template</h2>
-        <h4>By: Username</h4>
+        <h2><%= data.survey.title %></h2>
+        <h4>By: <%= data.survey.authorName %></h4>
     </div>
 
-  <form>
+  <form method="post">
     <div class="form-group center-block text-center">
         <div>
-            <label class="control-label">Question 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+            <label class="control-label">Question 1: <%= data.survey.questions[0].question %></label>
         </div>
       <div>
         <div class="radio">
-            <label><input type="radio" name="q1">True</label>
+            <label><input type="radio" name="q1" value="true">True</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="q1">False</label>
+            <label><input type="radio" name="q1" value="false">False</label>
         </div>
       </div>
     </div>
 
     <div class="form-group center-block text-center">
         <div>
-            <label class="control-label">Question 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+            <label class="control-label">Question 2: <%= data.survey.questions[1].question %></label>
         </div>
       <div>
         <div class="radio">
-            <label><input type="radio" name="q2">True</label>
+            <label><input type="radio" name="q2" value="true">True</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="q2">False</label>
+            <label><input type="radio" name="q2" value="false">False</label>
         </div>
       </div>
     </div>
 
     <div class="form-group center-block text-center">
         <div>
-            <label class="control-label">Question 3: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+            <label class="control-label">Question 3: <%= data.survey.questions[2].question %></label>
         </div>
       <div>
         <div class="radio">
-            <label><input type="radio" name="q3">True</label>
+            <label><input type="radio" name="q3" value="true">True</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="q3">False</label>
+            <label><input type="radio" name="q3" value="false">False</label>
         </div>
       </div>
     </div>
 
     <div class="form-group center-block text-center">
         <div>
-            <label class="control-label">Question 4: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+            <label class="control-label">Question 4: <%= data.survey.questions[3].question %></label>
         </div>
       <div>
         <div class="radio">
-            <label><input type="radio" name="q4">True</label>
+            <label><input type="radio" name="q4" value="true">True</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="q4">False</label>
+            <label><input type="radio" name="q4" value="false">False</label>
         </div>
       </div>
     </div>
 
     <div class="form-group center-block text-center">
         <div>
-            <label class="control-label">Question 5: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
+            <label class="control-label">Question 5: <%= data.survey.questions[4].question %></label>
         </div>
       <div>
         <div class="radio">
-            <label><input type="radio" name="q5">True</label>
+            <label><input type="radio" name="q5" value="true">True</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="q5">False</label>
+            <label><input type="radio" name="q5" value="false">False</label>
         </div>
       </div>
     </div>
 
     <div class="form-group center-block">        
       <div>
-        <a href="/polls/browse" class="btn btn-primary" role="button" type="submit">Submit</a>
+        <input type="submit" value="Submit Survey" />
       </div>
     </div>
   </form>

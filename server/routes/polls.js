@@ -26,6 +26,12 @@ anons can answer surveys
 */
 router.get('/browse', pollsController.getBrowsePolls);
 
+/* GET Survey by ID.
+   POST Survey submission
+ */
+router.get('/:id', pollsController.getPollById)
+  .post('/:id', pollsController.answerPoll);
+
 /* GET true false page. */
 router.get('/new/truefalse', reqAuth, pollsController.getNewTF)
   .post('/new/truefalse', reqAuth, pollsController.postNewTF);

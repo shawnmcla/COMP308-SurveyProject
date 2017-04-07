@@ -11,9 +11,9 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let SURVEY_TYPES = {
-    "TRUEORFALSE": 0,
-    "MULTIPLECHOICE": 1,
-    "SHORTANSWERS": 2
+    "TRUEORFALSE": "0",
+    "MULTIPLECHOICE": "1",
+    "SHORTANSWERS": "2"
 }
 
 let questionChildSchema = new Schema({
@@ -43,6 +43,12 @@ let surveysSchema = Schema({
         type: mongoose.SchemaTypes.ObjectId,
         required: "Survey must have an author"
     },
+    authorName: {
+        type: String,
+        default: '',
+        trim: true,
+        required: "Survey must have author name"
+    },
     created: {
         type: Date,
         default: Date.now
@@ -52,13 +58,14 @@ let surveysSchema = Schema({
         default: Date.now
     },
     ends: {
-        type: Date
+        type: Date,
+        default: new Date("2100/01/01")
     },
     type: {
         type: String,
         required: "Survey type is required."
     },
-    questions: [questionChildSchema],
+    questions: [questionChildSchema]
 },
     {
         collection: "surveys"

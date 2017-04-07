@@ -17,37 +17,27 @@
   <table class="table table-bordered table-hover table-condensed">
     <thead class="table-head">
       <tr>
-        <th>Created By</th>
-        <th>Title</th>
-        <th>Type</th>
+        <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Created By</th>
+        <th><span class="glyphicon glyphicon-console" aria-hidden="true"></span> Title</th>
+        <th><span class=" glyphicon glyphicon-th-list" aria-hidden="true"></span> Type</th>
+        <th><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Expires</th>
         <th></th>
       </tr>
     </thead>
+    <% for(let count = 0; count < data.surveys.length; count++) { %>
     <tbody class="table-row">
       <tr>
-        <td>Username</td>
-        <td>Title</td>
-        <td>True & False</td>
-        <td><a href="/polls/tfSurvey">Take Survey</a></td>
+        <td><%= data.surveys[count].authorName %></td>
+        <td><%= data.surveys[count].title %></td>
+        <td>
+        <% if(data.surveys[count].type == "0") { %> True / False <% } %>
+        <% if(data.surveys[count].type == "2") { %> Short Answers <% } %>
+        </td>
+        <td><%= data.surveys[count].ends.toLocaleString() %></td>
+        <td><a href="/polls/<%= data.surveys[count]._id %>"><span class=" glyphicon glyphicon-ok" aria-hidden="true"></span> Take Survey</a></td>
       </tr>
     </tbody>
-    <tbody class="table-row">
-      <tr>
-        <td>Username</td>
-        <td>Title</td>
-        <td>Multiple Choice</td>
-        <td><a href="/polls/mcSurvey">Take Survey</a></td>
-      </tr>
-    </tbody>
-    <tbody class="table-row">
-      <tr>
-        <td>Username</td>
-        <td>Title</td>
-        <td>Short Answer</td>
-        <td><a href="/polls/saSurvey">Take Survey</a></td>
-      </tr>
-    </tbody>
-
+    <% } %>
   </table>
   </div>
 
