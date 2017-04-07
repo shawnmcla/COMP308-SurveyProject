@@ -8,12 +8,24 @@ body{
 /***
 * Homepage/General
 ***/
+.nav-link{
+  color:#73ceff !important;
+}
+.nav-link:hover{
+  color:#DDF !important;
+}
+.navbar-brand{
+  color:#FFF !important;
+}
 
+.navbar-container{
+  margin-bottom:100px;
+}
 h1{
   font-weight: bold;
 }
-.container{
-  margin-top:30px;
+.main-content{
+  margin-top:50px;
   overflow-x: hidden;
 }
 .banner{
@@ -38,6 +50,9 @@ a:hover:not(.nopad){
   color:#000;
   background-color:rgba(255, 255, 255, 0.25);
 }
+a.light:hover:not(.nopad){
+    background-color:rgba(0, 0, 0, 0.10);
+}
 
 .browse-surveys{
   margin-top:50px;
@@ -49,7 +64,7 @@ a:hover:not(.nopad){
 }
 
 .site-wrapper{
-  margin: 0 10px;
+  margin: 30px 10px 0px 10px;
 }
 
 .notice{
@@ -76,16 +91,27 @@ a:hover:not(.nopad){
   border: 2px solid rgba(0,0,0,0.2);
   border-radius: 0 0 2% 2%;
   min-height: 200px;
+  background-image: url('./images/absurdity.png');
   box-shadow: 2px 2px 5px #888888;
+  background-color: #FFF;
 }
 .dashboard-component h3{
+  background-color: #FFF;
   font-weight: bold;
   padding: 5px 0 5px 0;
   margin: 0 0 30px 0;
-  background-color: #EEE;
+  box-shadow: 0 4px 4px -5px #000000;
   width: 100%;
 }
 
+.dashboard-banner{
+  color:#FFF;
+  background-color:#333;
+  padding-bottom: 10px;
+}
+.dashboard-banner a{
+  color:#FFF;
+}
 /**
 * Form Items
 ***/
@@ -183,4 +209,3 @@ html, body {
   display: table;
   margin: 0 auto;
 }
-

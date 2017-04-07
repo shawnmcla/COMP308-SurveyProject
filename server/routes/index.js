@@ -11,8 +11,12 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('./index/home', { title: 'Home' });
+router.get('/', function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('./polls/dashboard');
+  } else {
+    return res.render('./index/home', { title: 'Home', userName: "Guest" });
+  }
 });
 
 module.exports = router;

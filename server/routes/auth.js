@@ -28,6 +28,13 @@ router.get('/login', authController.DisplayLogin)
 router.get('/register', authController.DisplayRegister)
     .post('/register', authController.ProcessRegister);
 
+/**
+ * GET: Display the settings page
+ * POST: Process the account edit attempt
+ */
+router.get('/account', authController.DisplayRegister)
+    .post('/account', authController.ProcessRegister);
+
 // GET /logout - process the logout request
 router.get('/logout', authController.ProcessLogout);
 

@@ -18,7 +18,7 @@ module.exports.DisplayLogin = (req, res) => {
         res.render('auth/login', {
             title: "Login",
             messages: req.flash('error'),
-            displayName: req.user ? req.user.displayName : ''
+            userName: req.user ? req.user.userName : ''
         });
         return;
     } else {
@@ -43,7 +43,7 @@ module.exports.DisplayRegister = (req, res) => {
         res.render('auth/register', {
             title: "Register",
             messages: req.flash('registerMessage'),
-            displayName: req.user ? req.user.displayName : ''
+            userName: req.user ? req.user.userName : ''
         });
         return;
     } else {
@@ -58,7 +58,7 @@ module.exports.ProcessRegister = (req, res) => {
             username: req.body.username,
             //password: req.body.password,
             email: req.body.email,
-            displayName: req.body.displayName
+            userName: req.body.userName
         }),
         req.body.password,
         (err) => {
@@ -70,7 +70,7 @@ module.exports.ProcessRegister = (req, res) => {
                 return res.render('auth/register', {
                     title: "Register",
                     messages: req.flash('registerMessage'),
-                    displayName: req.user ? req.user.displayName : ''
+                    userName: req.user ? req.user.userName : ''
                 });
             }
             // if registration is successful
