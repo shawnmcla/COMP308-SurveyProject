@@ -1,0 +1,74 @@
+<%#
+ * File name: newShortAnswer.ejs
+ * Authors:
+ * Shawn McLaughlin <shawnmcdev@gmail.com>
+ * Joshua Korovesi <joshua.j.korovesi@gmail.com>
+ * Site: https://joshawn-opine.herokuapp.com/
+ * Description: Short Answers survey creation page template.
+%>
+<% include ../partials/header.ejs %>
+
+<div class="container main-content">
+    <div class="row text-center">
+        <h2>New Short Answer Survey</h2>
+    </div>
+
+<form method="post" class="survey-template">
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Survey Title: <input type="text" name="title" required/></label>
+        </div>
+    </div>
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Question 1: <input type="text" name="q1" required/></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Question 2: <input type="text" name="q2" required/></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Question 3: <input type="text" name="q3" required/></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Question 4: <input type="text" name="q4" required/></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Question 5: <input type="text" name="q5" required/></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Starts (YYYY/MM/DD):<br/>
+            <input type="text" name="starts" value="<%= data.date %>"> </label>
+        </div>
+    </div>
+
+    <div class="form-group center-block text-center">
+        <div>
+            <label class="control-label">Ends (YYYY/MM/DD, empty for no expiry):<br/>
+            <input type="text" name="ends" placeholder="YYYY/MM/DD" /></label>
+        </div>
+    </div>
+
+    <div class="form-group center-block">        
+      <div>
+        <input type="submit" class="btn btn-primary" value="Create Survey">
+      </div>
+    </div>
+  </form>
+</div>
+<% include ../partials/footer.ejs %>

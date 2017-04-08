@@ -169,7 +169,39 @@ exports.postNewTF = (req, res) => {
             res.redirect('/polls/dashboard');
             return;
         }
-    })
+    });
+}
+
+exports.postNewSA = (req, res) => {
+    let newSurvey = {
+        "title": req.body.title,
+        "author": req.user._id,
+        "authorName": req.user.username,
+        "starts": req.body.starts,
+        "type": SurveyTypes.SHORTANSWERS,
+        "questions": [
+            { question: req.body.q1 },
+            { question: req.body.q2 },
+            { question: req.body.q3 },
+            { question: req.body.q4 },
+            { question: req.body.q5 },
+        ]
+    }
+    if (req.body.ends) {
+        newSurvey.ends = req.body.ends;
+    }
+
+    Survey.create(newSurvey, (err, survey) => {
+        if (err) {
+            console.log(err);
+            res.redirect('./');
+            return;
+        } else {
+            console.log("Success: " + survey);
+            res.redirect('/polls/dashboard');
+            return;
+        }
+    });
 }
 
 exports.getOwnSurveys = (req, res) => {
@@ -244,7 +276,7 @@ exports.getSurveyResponses = (req, res) => {
 
 exports.getNewSA = (req, res) => {
     let date = new Date();
-    res.render('polls/saSurvey', {
+    res.render('polls/newShortAnswer', {
         title: 'Short Answer',
         userName: req.user.username,
         data: {

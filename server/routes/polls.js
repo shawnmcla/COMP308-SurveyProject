@@ -51,6 +51,7 @@ router.get('/new/multiplechoice', reqAuth, function (req, res, next) {
 */
 
 /* GET short answer page. */
-router.get('/new/shortanswers', reqAuth, pollsController.getNewSA);
+router.get('/new/shortanswers', reqAuth, pollsController.getNewSA)
+  .post('/new/shortanswers', reqAuth, pollsController.postNewSA);
 
 module.exports = router;
