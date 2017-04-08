@@ -14,13 +14,13 @@
         <h4>By: Username</h4>
     </div>
 
-  <form method="post">
+  <form method="post" class="survey-template">
     <div class="form-group center-block text-center">
         <div>
             <label class="control-label">Question 1: <%= data.survey.questions[0].question %></label>
         </div>
         <div>
-        <textarea class="form-control" name="q1" rows="5" id="q1"></textarea>
+        <input type="text" name="q1" placeholder="Answer" required/>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             <label class="control-label">Question 2: <%= data.survey.questions[1].question %></label>
         </div>
         <div>
-        <textarea class="form-control" name="q2" rows="5" id="q2"></textarea>
+        <input type="text" name="q2" placeholder="Answer" required/>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
             <label class="control-label">Question 3: <%= data.survey.questions[2].question %></label>
         </div>
         <div>
-        <textarea class="form-control" name="q3" rows="5" id="q3"></textarea>
+        <input type="text" name="q3" placeholder="Answer" required/>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
             <label class="control-label">Question 4: <%= data.survey.questions[3].question %></label>
         </div>
         <div>
-        <textarea class="form-control" name="q4" rows="5" id="q4"></textarea>
+        <input type="text" name="q4" placeholder="Answer" required/>
         </div>
     </div>
 
@@ -56,7 +56,7 @@
             <label class="control-label">Question 5: <%= data.survey.questions[4].question %></label>
         </div>
         <div>
-        <textarea class="form-control" name="q5" rows="5" id="q5"></textarea>
+        <input type="text" name="q5" placeholder="Answer" required/>
         </div>
     </div>
 
