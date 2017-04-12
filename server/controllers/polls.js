@@ -63,6 +63,9 @@ exports.getPollById = (req, res) => {
                 res.redirect('/polls/dashboard');
                 return;
             } else {
+                if (new Date(survey.ends) < Date.now()) {
+                    req.flash('msg', { type: 'info', msg: 'This survey has ended.' });
+                }
                 console.log("FOUND", survey);
                 switch (survey.type) {
                     case SurveyTypes.TRUEORFALSE:
@@ -101,10 +104,18 @@ exports.answerPoll = (req, res) => {
         console.log(req.body);
         Survey.findById(req.params.id, (err, survey) => {
             if (err || !survey) {
-                console.log("No such survey");
-                res.redirect('/polls/dashboard');
+                req.flash('msg', { type: "info", msg: "Invalid survey ID" });
+                let redir = '/polls/dashboard';
+                if (!req.user)
+                    redir = '/polls/browse';
+                res.redirect(redir);
                 return;
             } else {
+                if (new Date(survey.ends) < Date.now()) {
+                    req.flash('msg', { type: 'error', msg: 'Survey has ended.' });
+                    res.redirect('/polls/' + req.params.id);
+                    return;
+                }
                 let response = {
                     "survey": req.params.id,
                     answers: [
@@ -116,16 +127,20 @@ exports.answerPoll = (req, res) => {
                     ]
                 }
                 SurveyResponse.create(response, (err, response) => {
-                    //TODO: Error page, success page.
+                    let msg = "Error submitting survey. Notify site owners.";
+                    let redir = "/polls/" + req.params.id;
                     if (err) {
-                        console.log("Error saving response");
-                        res.redirect('/polls/dashboard');
-                        return;
+                        req.flash('msg', { type: "error", msg: msg });
                     } else {
-                        console.log("Successfully saved response.");
-                        res.redirect('/polls/dashboard');
-                        return;
+                        msg = "Successfully submitted survey.";
+                        req.flash('msg', { type: "success", msg: msg });
+                        if (req.user) // Go to dashboard if logged in
+                            redir = "/polls/dashboard";
+                        else
+                            redir = "/polls/browse";
                     }
+                    res.redirect(redir);
+                    return;
                 });
             }
         });
@@ -164,15 +179,17 @@ exports.postNewTF = (req, res) => {
     }
 
     Survey.create(newSurvey, (err, survey) => {
+        let redir = "/polls/new/truefalse";
+        let msg = "Error creating new survey.";
         if (err) {
-            console.log(err);
-            res.redirect('./');
-            return;
+            req.flash('msg', { type: "error", msg: msg });
         } else {
-            console.log("Success: " + survey);
-            res.redirect('/polls/dashboard');
-            return;
+            msg = "Successfully created survey.";
+            req.flash('msg', { type: "success", msg: msg });
+            redir = "/polls/" + survey._id;
         }
+        res.redirect(redir);
+        return;
     });
 }
 
@@ -196,15 +213,17 @@ exports.postNewSA = (req, res) => {
     }
 
     Survey.create(newSurvey, (err, survey) => {
+        let redir = "/polls/new/shortanswers";
+        let msg = "Error creating new survey.";
         if (err) {
-            console.log(err);
-            res.redirect('./');
-            return;
+            req.flash('msg', { type: "error", msg: msg });
         } else {
-            console.log("Success: " + survey);
-            res.redirect('/polls/dashboard');
-            return;
+            msg = "Successfully created survey.";
+            req.flash('msg', { type: "success", msg: msg });
+            redir = "/polls/" + survey._id;
         }
+        res.redirect(redir);
+        return;
     });
 }
 

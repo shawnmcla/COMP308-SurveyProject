@@ -62,7 +62,8 @@
 
     <div class="form-group center-block">        
       <div>
-        <input type="submit" value="Submit Survey" />
+            <input type="submit" value="Submit Survey"
+            <% if(new Date(data.survey.ends) < Date.now()) { %> title="Survey has ended" disabled <% } %> />
       </div>
     </div>
   </form>
