@@ -6,6 +6,8 @@
  * Site: https://joshawn-opine.herokuapp.com/
  * Description: Stylesheet for website
  */
+
+ /* BODY/HTML */
 body, html{
   height: 100%;
 }
@@ -83,8 +85,9 @@ a.light:hover:not(.nopad){
 .notice{
   font-size:75%;
 }
+
 /***
-* Browse Surveys 
+* Tables
 ***/
 
 .table-head{
@@ -125,6 +128,7 @@ a.light:hover:not(.nopad){
 .dashboard-banner a{
   color:#FFF;
 }
+
 /**
 * Form Items
 ***/
@@ -203,6 +207,9 @@ Taken from: http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
   height: 50px;
   overflow-x: hidden;
 }
+
+
+
 
 /* unselectable */
 .unselectable{

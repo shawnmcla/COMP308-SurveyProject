@@ -1,0 +1,26 @@
+<%#
+ * File name: flash.ejs
+ * Authors:
+ * Shawn McLaughlin <shawnmcdev@gmail.com>
+ * Joshua Korovesi <joshua.j.korovesi@gmail.com>
+ * Site: https://joshawn-opine.herokuapp.com/
+ * Description: Flash messages partial page template.
+%>
+<!-- Display flash messages  -->
+<% for(let i = 0; i < messages.length; i++){ %>
+        <% if(messages[i].type == "error"){ %>
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <%= messages[i].msg %>
+            </div>
+        <% } %>
+        <% if(messages[i].type == "success"){ %>
+            <div class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <%= messages[i].msg %>
+            </div>
+        <% } %>
+        <% if(messages[i].type == "info"){ %>
+            <div class="alert alert-info" role="alert">
+                <span class=" glyphicon glyphicon-info-sign" aria-hidden="true"></span> <%= messages[i].msg %>
+            </div>
+        <% } %>
+    <% } %>

@@ -9,6 +9,7 @@
 
 let passport = require('passport');
 let User = require('../models/users').User;
+let winston = require('winston');
 
 // Display the login page
 module.exports.DisplayLogin = (req, res) => {
@@ -65,11 +66,11 @@ module.exports.ProcessRegister = (req, res) => {
             if (err) {
                 console.log('Error inserting new user: ', err);
                 if (err.name == "UserExistsError") {
-                    req.flash('registerMessage', 'Registration Error: User Already Exists');
+                    req.flash('error', 'Registration Error: User Already Exists');
                 }
                 return res.render('auth/register', {
                     title: "Register",
-                    messages: req.flash('registerMessage'),
+                    messages: req.flash('error'),
                     userName: req.user ? req.user.userName : ''
                 });
             }
@@ -89,4 +90,39 @@ module.exports.ProcessLogout = (req, res) => {
 module.exports.RequireAuth = (req, res, next) => {
     if (!req.isAuthenticated()) return res.redirect('/auth/login');
     next();
+}
+
+// Display account settings page
+module.exports.DisplaySettings = (req, res) => {
+    return res.render('auth/settings', {
+        title: "Account Settings",
+        messages: req.flash('msg'),
+        userName: req.user ? req.user.userName : '',
+        email: req.user.email
+    });
+}
+
+// Change the user's email
+module.exports.ChangeEmail = (req, res) => {
+    let newEmail = req.body.email;
+    let userId = req.user._id;
+
+    User.update({ _id: userId }, { email: newEmail }, (err) => {
+        if (err) {
+            let msg = "Error updating email.";
+            winston.error(msg, err);
+            req.flash("msg", { type: "error", msg: msg });
+            res.redirect('/auth/account');
+            return;
+        } else {
+            let msg = "Email successfully updated.";
+            req.flash("msg", { type: "success", msg: msg });
+            res.redirect('/auth/account');
+            return;
+        }
+    });
+}
+// Change the user's password
+module.exports.ChangePassword = (req, res) => {
+    res.status(500).json({ err: "Not implemented." });
 }
