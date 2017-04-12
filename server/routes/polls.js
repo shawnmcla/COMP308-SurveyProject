@@ -32,6 +32,9 @@ router.get('/mine', reqAuth, pollsController.getOwnSurveys);
 /* GET Survey responses by ID. */
 router.get('/:id/details', reqAuth, pollsController.getSurveyResponses);
 
+/* GET Export CSV */
+router.get('/:id/export.csv', reqAuth, pollsController.getSurveyExport);
+
 /* GET Survey by ID.
    POST Survey submission
  */

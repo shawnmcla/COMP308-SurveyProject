@@ -13,6 +13,7 @@
         <h2 class="text-center"><%= data.survey.title %></h2>
         <h3 class="text-center"><%= data.responses.length %> Responses </h3>
         <h3 class="text-center">Survey ends: <%= data.survey.ends.toLocaleString() %></h3>
+        <h4 class="text-center"><a href="export.csv" onclick="getExport">Export Data (CSV)</a></h4>
     </div>
 
 <% for(let count = 0; count < data.responses.length; count++) { %>

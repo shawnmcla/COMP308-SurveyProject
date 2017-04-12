@@ -20,7 +20,7 @@ exports.getDashboard = (req, res) => {
     res.render('polls/dashboard', {
         title: 'Dashboard',
         userName: req.user.username,
-        messages:req.flash('msg'),
+        messages: req.flash('msg'),
         data: null,
     });
 }
@@ -43,7 +43,7 @@ exports.getBrowsePolls = (req, res) => {
                 res.render('polls/browse', {
                     title: 'Browse Surveys',
                     userName: req.user ? req.user.username : "Guest",
-                    messages:req.flash('msg'),
+                    messages: req.flash('msg'),
                     data: { surveys: result },
                 });
             }
@@ -83,7 +83,7 @@ exports.getPollById = (req, res) => {
                 res.render("polls/" + template, {
                     title: survey.title,
                     userName: req.user ? req.user.username : "Guest",
-                    messages:req.flash('msg'),
+                    messages: req.flash('msg'),
                     data: { survey: survey }
                 });
                 return;
@@ -137,7 +137,7 @@ exports.getNewTF = (req, res) => {
     res.render('polls/newTrueFalse', {
         title: 'New True False Survey',
         userName: req.user.username,
-        messages:req.flash('msg'),
+        messages: req.flash('msg'),
         data: {
             date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
         },
@@ -222,7 +222,7 @@ exports.getOwnSurveys = (req, res) => {
                 console.log(result);
                 res.render('polls/browseMine', {
                     title: 'Browse Surveys',
-                    messages:req.flash('msg'),
+                    messages: req.flash('msg'),
                     userName: req.user ? req.user.username : "Guest",
                     data: { surveys: result },
                 });
@@ -235,7 +235,7 @@ exports.getNewMC = (req, res) => {
     res.render('polls/mcSurvey', {
         title: 'MultiChoice',
         userName: req.user.username,
-        messages:req.flash('msg'),
+        messages: req.flash('msg'),
         data: {
             date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
         },
@@ -263,13 +263,54 @@ exports.getSurveyResponses = (req, res) => {
                         } else {
                             res.render('polls/responses', {
                                 title: 'Survey Responses',
-                                messages:req.flash('msg'),
+                                messages: req.flash('msg'),
                                 userName: req.user ? req.user.username : "Guest",
                                 data: {
                                     survey: survey,
-                                    responses: responses
+                                    responses: responses,
                                 },
                             });
+                        }
+                    });
+                } else {
+                    res.status(403).end("Not authorized to access this survey.");
+                    return;
+                }
+            }
+        });
+    }
+}
+
+exports.getSurveyExport = (req, res) => {
+    if (!req.params.id || !mongoose.Types.ObjectId.isValid(req.params.id)) {
+        console.log("Invalid survey ID");
+        res.redirect('/polls/dashboard');
+        return;
+    } else {
+        Survey.findById(req.params.id, (err, survey) => {
+            if (err || !res) {
+                console.log(err || "Not found");
+                res.redirect('/polls/dashboard');
+                return; //error msg?
+            } else {
+                if (String(survey.author) == String(req.user._id)) {
+                    SurveyResponse.find({ "survey": survey._id }, (err, responses) => {
+                        if (err) {
+                            console.log(err);
+                            res.redirect('/polls/dashboard');
+                            return;
+                        } else {
+                            let exportData = "";
+                            responses.forEach((response) => {
+                                let line = "";
+                                response.answers.forEach((answer) => {
+                                    line += answer + ",";
+                                });
+                                line += "\n";
+                                exportData += line;
+                            });
+                            console.log(exportData);
+                            res.type("text/csv").send(exportData);
                         }
                     });
                 } else {
@@ -285,7 +326,7 @@ exports.getNewSA = (req, res) => {
     let date = new Date();
     res.render('polls/newShortAnswer', {
         title: 'Short Answer',
-        messages:req.flash('msg'),
+        messages: req.flash('msg'),
         userName: req.user.username,
         data: {
             date: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),

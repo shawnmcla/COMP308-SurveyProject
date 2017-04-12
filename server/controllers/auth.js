@@ -132,22 +132,6 @@ module.exports.ChangeEmail = (req, res) => {
 }
 // Change the user's password
 module.exports.ChangePassword = (req, res) => {
-    /*
-    User.findByUsername(req.user.userName, false, (err, user) => {
-        if (err || !user) {
-            let msg = "Error updating password.";
-            winston.error(msg, err);
-            req.flash("msg", { type: "error", msg: msg });
-            res.redirect('/auth/account');
-            return;
-        } else {
-            let msg = "Password successfully updated";
-            req.flash("msg", { type: "success", msg: msg });
-            res.redirect('/auth/account');
-            return;
-        }
-    });
-    */
     User.findById(req.user._id, (err, user) => {
         console.log("Changing password to " + req.body.password);
         if (err || !user) {
