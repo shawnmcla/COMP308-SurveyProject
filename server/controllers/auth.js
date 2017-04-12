@@ -28,12 +28,18 @@ module.exports.DisplayLogin = (req, res) => {
 }
 
 // Processes the login request
-module.exports.ProcessLogin = () => {
-    return passport.authenticate('local', {
-        successRedirect: '/polls/dashboard',
-        failureRedirect: '/auth/login',
-        failureFlash: true
-    });
+module.exports.ProcessLogin = (req, res, next) => {
+    passport.authenticate('local', function (err, user, info) {
+        if (err) { return next(err); }
+        if (!user) {
+            req.flash('msg', { type: 'error', msg: "Invalid username or password." });
+            return res.redirect('/auth/login');
+        }
+        req.logIn(user, function (err) {
+            if (err) { return next(err); }
+            return res.redirect('/polls/dashboard');
+        });
+    })(req, res, next);
 }
 
 // Display the register page
@@ -66,11 +72,13 @@ module.exports.ProcessRegister = (req, res) => {
             if (err) {
                 console.log('Error inserting new user: ', err);
                 if (err.name == "UserExistsError") {
-                    req.flash('error', 'Registration Error: User Already Exists');
+                    req.flash('msg', { type: "error", msg: 'Registration Error: User Already Exists' });
+                } else {
+                    req.flash('msg', { type: "error", msg: "Error processing registration. Contact site owner." });
                 }
                 return res.render('auth/register', {
                     title: "Register",
-                    messages:req.flash('msg'),
+                    messages: req.flash('msg'),
                     userName: req.user ? req.user.userName : ''
                 });
             }

@@ -19,7 +19,7 @@ let reqAuth = authController.RequireAuth;
  * POST: Process the login attempt
  */
 router.get('/login', authController.DisplayLogin)
-    .post('/login', authController.ProcessLogin());
+    .post('/login', authController.ProcessLogin);
 
 /**
  * GET: Display the register page

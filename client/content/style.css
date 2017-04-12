@@ -197,6 +197,13 @@ input[type='email']:focus{
   margin-bottom: 10px;
 }
 
+/* Alerts */
+.alert{
+  width:75%;
+  margin: 0 auto;
+  text-align:center;
+}
+
 /* Sticky footer styles
 Taken from: http://getbootstrap.com/examples/sticky-footer/sticky-footer.css
 -------------------------------------------------- */

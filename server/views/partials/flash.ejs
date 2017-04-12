@@ -6,7 +6,7 @@
  * Site: https://joshawn-opine.herokuapp.com/
  * Description: Flash messages partial page template.
 %>
-<div class="center-block">
+
 <!-- Display flash messages  -->
 <% for(let i = 0; i < messages.length; i++){ %>
         <% if(messages[i].type == "error"){ %>
@@ -25,4 +25,3 @@
             </div>
         <% } %>
     <% } %>
-</div>
