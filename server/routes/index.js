@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('./polls/dashboard');
   } else {
-    return res.render('./index/home', { title: 'Home', userName: "Guest" });
+    return res.render('./index/home', { title: 'Home', messages:req.flash('msg'), userName: "Guest" });
   }
 });
 

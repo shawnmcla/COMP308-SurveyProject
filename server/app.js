@@ -72,6 +72,7 @@ app.use(function (req, res) {
   res.status(400);
   res.render('errors/404', {
     title: '404: File Not Found',
+    messages:req.flash('msg'),
     userName: req.user ? req.user.username : "Guest",
   });
 });
@@ -81,6 +82,7 @@ app.use(function (error, req, res, next) {
   res.status(500);
   res.render('errors/500', {
     title: '500: Internal Server Error',
+    messages:req.flash('msg'),
     userName: req.user ? req.user.username : "Guest",
     error: error,
   });

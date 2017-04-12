@@ -18,7 +18,7 @@ module.exports.DisplayLogin = (req, res) => {
         // render the login page
         res.render('auth/login', {
             title: "Login",
-            messages: req.flash('error'),
+            messages: req.flash('msg'),
             userName: req.user ? req.user.userName : ''
         });
         return;
@@ -43,7 +43,7 @@ module.exports.DisplayRegister = (req, res) => {
         // render the registration page
         res.render('auth/register', {
             title: "Register",
-            messages: req.flash('registerMessage'),
+            messages: req.flash('msg'),
             userName: req.user ? req.user.userName : ''
         });
         return;
@@ -70,7 +70,7 @@ module.exports.ProcessRegister = (req, res) => {
                 }
                 return res.render('auth/register', {
                     title: "Register",
-                    messages: req.flash('error'),
+                    messages:req.flash('msg'),
                     userName: req.user ? req.user.userName : ''
                 });
             }
@@ -97,7 +97,7 @@ module.exports.DisplaySettings = (req, res) => {
     return res.render('auth/settings', {
         title: "Account Settings",
         messages: req.flash('msg'),
-        userName: req.user ? req.user.userName : '',
+        userName: req.user ? req.user.username : "Guest",
         email: req.user.email
     });
 }
