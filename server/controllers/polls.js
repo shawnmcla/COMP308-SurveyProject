@@ -231,7 +231,7 @@ exports.getOwnSurveys = (req, res) => {
     Survey.find()
         .where('author')
         .equals(req.user._id)
-        .sort({ title: 1 })
+        .sort({ created: -1 })
         .exec((err, result) => {
             if (err) {
                 console.log(err);
